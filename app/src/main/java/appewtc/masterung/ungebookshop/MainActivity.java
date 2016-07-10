@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Explicit
         private Context context;
-        private String myURL, myUserString, myPasswordString, truePassword;
+        private String myURL, myUserString, myPasswordString,
+                truePassword, loginNameString, loginSurnameString;
         private boolean statusABoolean = true;
 
         public SynUserTABLE(Context context,
@@ -84,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
                         statusABoolean = false;
                         truePassword = jsonObject.getString("Password");
+                        loginNameString = jsonObject.getString("Name");
+                        loginSurnameString = jsonObject.getString("Surname");
 
                     }
                 }   // for
@@ -93,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
                     myAlert.myDialog(context, "ไม่มี User นี่",
                             "ไม่มี " + myUserString + " ในฐานข้อมูลของเรา");
                 } else if (myPasswordString.equals(truePassword)) {
-                    Toast.makeText(context, "Welcome", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(context, "Welcome " + loginNameString + " " + loginSurnameString , Toast.LENGTH_SHORT).show();
 
                 } else {
                     MyAlert myAlert = new MyAlert();
